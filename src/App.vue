@@ -2,6 +2,13 @@
 import ReactiveDemo from "./reactive.vue";
 import RefDemo from "./ref.vue";
 import Watch from "./watch.vue";
+import Computed from "./computed.vue";
+import { ref } from "vue";
+const isOpen = ref(false);
+
+const modalState = (openState: boolean) => {
+  isOpen.value = openState;
+};
 </script>
 
 <template>
@@ -9,9 +16,18 @@ import Watch from "./watch.vue";
   <br />
   <br /> -->
   <!-- <RefDemo /> -->
+  <!-- <br />
+  <br />
+  <Watch /> -->
   <br />
   <br />
-  <Watch />
+  <button @click="isOpen = true">Open</button>
+  <Computed
+    title="Successfully created!"
+    body="Now your ."
+    :is-open="isOpen"
+    @modal-state="modalState($event)"
+  />
 </template>
 
 <style scoped>
