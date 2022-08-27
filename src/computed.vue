@@ -15,7 +15,9 @@ const props = withDefaults(defineProps<Props>(), {
   body: "This is the default body",
 });
 
-const emit = defineEmits(["modalState"]);
+const emit = defineEmits<{
+  (e: "modalState", state: boolean): void;
+}>();
 
 const modalState = ref<boolean | null>(null);
 
@@ -37,7 +39,7 @@ const isModalOpen: WritableComputedRef<boolean> = computed({
 
 function closeModal() {
   isModalOpen.value = false;
-  emit("modalState", modalState.value);
+  emit("modalState", modalState.value!);
 }
 </script>
 
